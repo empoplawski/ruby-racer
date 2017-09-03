@@ -28,8 +28,8 @@ class RubyRacer
   # Rolls the die and advances +player+ accordingly
   def advance_player
     @player_positions.map do |player, position|
-      @player_position += die.roll
-      @player_positions[player] = @player_position
+      position += die.roll
+      @player_positions[player] = position
     end
   end
 
@@ -38,12 +38,6 @@ class RubyRacer
   # The board should have the same dimensions each time.
   def board_visualization
     board = Array.new
-
-    # @players.each do |player|
-    #   track = Array.new(@length) { [' ', '|'] }
-    #   track[@player_position] = player
-    #   board << track
-    # end
 
     @player_positions.each do |player, position|
       track = Array.new(@length) { [' ', '|'] }
@@ -58,20 +52,20 @@ end
 die = Die.new
 game = RubyRacer.new([:a, :b], die)
 
-game.board_visualization
-game.advance_player
-game.board_visualization
-game.advance_player
-game.board_visualization
-game.advance_player
-game.board_visualization
-game.board_visualization
-game.advance_player
-game.board_visualization
-game.advance_player
-game.board_visualization
-game.advance_player
-game.board_visualization
+# game.board_visualization
+# game.advance_player
+# game.board_visualization
+# game.advance_player
+# game.board_visualization
+# game.advance_player
+# game.board_visualization
+# game.board_visualization
+# game.advance_player
+# game.board_visualization
+# game.advance_player
+# game.board_visualization
+# game.advance_player
+# game.board_visualization
 
 # p @player_a_position
 # p game.advance_player

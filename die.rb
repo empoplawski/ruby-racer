@@ -14,4 +14,3 @@ class Die
   end
 end
 
-# die = Die.new

@@ -16,12 +16,10 @@ sleep(1)
 
 # Play the game.
 until game.finished?
+
   # Do this each round until the game is finished.
 
   # Move each player forward.
-  # game.players.each do |player|
-  #   game.advance_player
-  # end
   game.advance_player
   game.player_positions
 
@@ -32,11 +30,7 @@ until game.finished?
   reset_screen
   game.board_visualization
   sleep(0.2)
-  # game.finished?
 end
 
 # Once the game is finished, report the winner.
 puts "Player '#{game.winner}' wins!"
-p game.player_positions
-
-# p game.advance_player(@player_a_position)
