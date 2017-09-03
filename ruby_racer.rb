@@ -1,19 +1,22 @@
 require_relative 'die'
 
 class RubyRacer
-  attr_reader :players, :die, :length
+  attr_reader :players, :die, :length, :player_positions
 
-  def initialize(players, die, length = 30)
-    @player_a_position = 0
-    @player_b_position = 0
+  def initialize(players, die, length=30)
+    @player_position = 0
     @length = length
-    @players = [:a, :b]
+    @players = players
     @die = die
+    @player_positions = Hash[@players.map { |key| [key, 0]}]
   end
 
   # Returns +true+ if one of the players has reached
   # the finish line, +false+ otherwise
   def finished?
+    @players.each do |player|
+
+    end
   end
 
   # Returns the winner if there is one, +nil+ otherwise
@@ -22,34 +25,49 @@ class RubyRacer
 
   # Rolls the die and advances +player+ accordingly
   def advance_player
-      @player_a_position += die.roll
-      @player_b_position += die.roll
+    @player_positions.map do |player, position|
+      @player_position += die.roll
+      @player_positions[player] = @player_position
+    end
   end
 
   # Returns the current state of the game as a string
   # that can be printed on the command line.
   # The board should have the same dimensions each time.
   def board_visualization
-    # game.players.each do |player|
-    #   game.advance_player(player)
-    # end
-    player_a_track = Array.new(@length) { [' ', '|'] }
-    player_b_track = Array.new(@length) { [' ', '|'] }
+    board = Array.new
 
-    player_a_track[@player_a_position][0] = 'a'
-    player_b_track[@player_b_position][0] = 'b'
+    @players.each do |player|
+      track = Array.new(@length) { [' ', '|'] }
+      track[@player_position] = player
+      board << track
+    end
 
-    complete_track = [player_a_track.join, player_b_track.join]
+    board.each { |track| puts track.join}
   end
 end
 
 die = Die.new
+game = RubyRacer.new([:a, :b], die)
 
-game = RubyRacer.new("asdf", die)
+# game.board_visualization
+# game.advance_player
+# game.board_visualization
+# game.advance_player
+# game.board_visualization
+# game.advance_player
+# game.board_visualization
 
-# puts game.board_visualization
+# p @player_a_position
 # p game.advance_player
 # p @player_a_position
-p game.advance_player
-# p @player_a_position
 # p die.roll
+
+# p game.player_positions
+# p game.advance_player
+# p game.player_positions
+# p game.advance_player
+# p game.player_positions
+# p game.advance_player
+# p game.player_positions
+
