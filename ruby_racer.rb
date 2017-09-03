@@ -14,13 +14,15 @@ class RubyRacer
   # Returns +true+ if one of the players has reached
   # the finish line, +false+ otherwise
   def finished?
-    @players.each do |player|
-
+    @player_positions.each do |player, position|
+      return true if position >= @length
     end
+      false
   end
 
   # Returns the winner if there is one, +nil+ otherwise
   def winner
+    @player_positions.max_by{|player, position| position}[0]
   end
 
   # Rolls the die and advances +player+ accordingly
@@ -37,9 +39,15 @@ class RubyRacer
   def board_visualization
     board = Array.new
 
-    @players.each do |player|
+    # @players.each do |player|
+    #   track = Array.new(@length) { [' ', '|'] }
+    #   track[@player_position] = player
+    #   board << track
+    # end
+
+    @player_positions.each do |player, position|
       track = Array.new(@length) { [' ', '|'] }
-      track[@player_position] = player
+      track[@player_positions[player]] = player
       board << track
     end
 
@@ -50,13 +58,20 @@ end
 die = Die.new
 game = RubyRacer.new([:a, :b], die)
 
-# game.board_visualization
-# game.advance_player
-# game.board_visualization
-# game.advance_player
-# game.board_visualization
-# game.advance_player
-# game.board_visualization
+game.board_visualization
+game.advance_player
+game.board_visualization
+game.advance_player
+game.board_visualization
+game.advance_player
+game.board_visualization
+game.board_visualization
+game.advance_player
+game.board_visualization
+game.advance_player
+game.board_visualization
+game.advance_player
+game.board_visualization
 
 # p @player_a_position
 # p game.advance_player
@@ -70,4 +85,4 @@ game = RubyRacer.new([:a, :b], die)
 # p game.player_positions
 # p game.advance_player
 # p game.player_positions
-
+# p game.finished?

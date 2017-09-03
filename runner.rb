@@ -19,9 +19,12 @@ until game.finished?
   # Do this each round until the game is finished.
 
   # Move each player forward.
-  game.players.each do |player|
-    game.advance_player
-  end
+  # game.players.each do |player|
+  #   game.advance_player
+  # end
+  game.advance_player
+  game.player_positions
+
 
   # Now that each player has moved,
   # reprint the board with the new player positions
@@ -34,6 +37,6 @@ end
 
 # Once the game is finished, report the winner.
 puts "Player '#{game.winner}' wins!"
-p @player_positions
+p game.player_positions
 
 # p game.advance_player(@player_a_position)
