@@ -34,3 +34,5 @@ end
 
 # Once the game is finished, report the winner.
 puts "Player '#{game.winner}' wins!"
+
+# p game.advance_player(@player_a_position)
