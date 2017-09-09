@@ -9,15 +9,14 @@ class RubyRacer
     @players = players
     @die = die
     @player_positions = Hash[@players.map { |key| [key, 0]}]
+    @board = []
+
   end
 
-  # Returns +true+ if one of the players has reached
+  # Returns +true+ if one of the players as reached
   # the finish line, +false+ otherwise
   def finished?
-    @player_positions.each do |player, position|
-      return true if position >= @length
-    end
-      false
+    player_positions.any? { |player, position| position >= length}
   end
 
   # Returns the winner if there is one, +nil+ otherwise
@@ -29,7 +28,15 @@ class RubyRacer
   def advance_player
     @player_positions.map do |player, position|
       position += die.roll
-      @player_positions[player] = position
+      @player_positions[player] = calculate_player_position(position)
+    end
+  end
+
+  def calculate_player_position(position)
+    if position > length
+      length
+    else 
+      position
     end
   end
 
@@ -37,17 +44,30 @@ class RubyRacer
   # that can be printed on the command line.
   # The board should have the same dimensions each time.
   def board_visualization
-    board = Array.new
 
-    @player_positions.each do |player, position|
-      track = Array.new(@length) { [' ', '|'] }
-      track[@player_positions[player]] = player
-      board << track
-    end
+    tracks = player_positions.collect { |player, position| player_on_track(position, player).join(" |") }
+   
+    
+    puts tracks.join("\n")
 
-    board.each { |track| puts track.join}
   end
+
+  def track
+    Array.new(length,"")
+  end
+
+  def player_on_track(position, player)
+
+    blah = track
+    # require 'pry'
+    # binding.pry
+    blah[position] = player
+    blah
+  end
+
 end
+
+
 
 die = Die.new
 game = RubyRacer.new([:a, :b], die)
