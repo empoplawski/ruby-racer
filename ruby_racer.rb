@@ -46,9 +46,7 @@ class RubyRacer
   def board_visualization
 
     tracks = player_positions.collect { |player, position| player_on_track(position, player).join(" |") }
-   
-    
-    puts tracks.join("\n")
+      puts tracks.join("\n")
 
   end
 
