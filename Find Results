@@ -1,0 +1,14 @@
+Searching 8 files for "blah"
+
+/Users/Elise/DBC/ruby-racer-1-outrageous-fortune-challenge/ruby_racer.rb:
+   57    def player_on_track(position, player)
+   58  
+   59:     location = track
+   60      # require 'pry'
+   61      # binding.pry
+   62:     location[position] = player
+   63:     location
+   64    end
+   65  
+
+3 matches in 1 file
