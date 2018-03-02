@@ -56,11 +56,11 @@ class RubyRacer
 
   def player_on_track(position, player)
 
-    blah = track
+    location = track
     # require 'pry'
     # binding.pry
-    blah[position] = player
-    blah
+    location[position] = player
+    location
   end
 
 end
